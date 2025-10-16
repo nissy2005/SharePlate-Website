@@ -129,21 +129,22 @@ body {
   animation: fadeSlideUp 2s ease;
 }
 
-.banner-buttons .btn {
+/* Banner Explore Button - Smaller Version */
+.banner-buttons .explore {
+  display: inline-block;
   background-color: var(--primary);
   color: var(--secondary);
-  border: none;
-  padding: 12px 25px;
+  text-decoration: none;
+  padding: 12px 25px; /* reduced padding */
   border-radius: 25px;
   font-weight: 600;
-  margin: 5px;
-  cursor: pointer;
-  transition: 0.3s;
+  font-size: 1rem; /* slightly smaller font */
+  transition: all 0.3s ease;
 }
 
-.banner-buttons .btn:hover {
-  transform: scale(1.05);
+.banner-buttons .explore:hover {
   background-color: #ffe27a;
+  transform: scale(1.05);
 }
 
 /* Recently Added */
@@ -158,6 +159,7 @@ body {
   font-weight: 600;
   color: var(--secondary);
   margin-bottom: 50px;
+  font-family: 'Montserrat', sans-serif; /* add this */
 }
 
 .cards {

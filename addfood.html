@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Food - SharePlate</title>
+  <link rel="stylesheet" href="addfood.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="logo">
+      <img src="images/logo.png" alt="SharePlate Logo">
+    </div>
+    <div class="menu">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="browse.html" class="nav-item">Browse</a>
+      <a href="addfood.html" class="nav-item active">Add Food</a>
+      <a href="yourorders.html" class="nav-item">Your Orders</a>
+      <a href="#" class="nav-item">More</a>
+      <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Add Food Form Section -->
+  <section class="add-food-section">
+    <h1>Add a New Food</h1>
+    <form id="addFoodForm">
+      <div class="form-group">
+        <label for="foodName">Food Name*</label>
+        <input type="text" id="foodName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category*</label>
+        <select id="category" required>
+          <option value="">Select Category</option>
+          <option value="fruits">Fruits</option>
+          <option value="vegetables">Vegetables</option>
+          <option value="desserts">Desserts</option>
+          <option value="beverages">Beverages</option>
+          <option value="snacks">Snacks</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" accept="image/*">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Add a short description"></textarea>
+      </div>
+
+
+      <div class="image-preview" id="imagePreview"></div>
+
+      <div class="buttons">
+        <button type="submit" class="btn btn-submit">Add Food</button>
+        <button type="reset" class="btn btn-reset" onclick="clearPreview()">Reset</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function() {
+          imagePreview.innerHTML = `<img src="${reader.result}" alt="Preview">`;
+        }
+        reader.readAsDataURL(file);
+      } else {
+        imagePreview.innerHTML = '';
+      }
+    });
+
+    function clearPreview() {
+      imagePreview.innerHTML = '';
+    }
+
+    // Form submission (frontend only)
+    document.getElementById('addFoodForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('foodName').value;
+      const category = document.getElementById('category').value;
+      const desc = document.getElementById('description').value;
+      const image = imageInput.files[0] ? imageInput.files[0].name : 'No Image';
+
+      alert(`Food Added!\nName: ${name}\nCategory: ${fav}\nImage: ${image}\nDescription: ${desc}`);
+      this.reset();
+      clearPreview();
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 SharePlate. All rights reserved.
+  </footer>
+</body>
+</html>
+</body>
+</html>

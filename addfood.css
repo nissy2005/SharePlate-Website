@@ -87,7 +87,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Page Title */
+/* Title */
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 36px;
@@ -97,7 +97,7 @@ h1 {
   animation: fadeSlideUp 0.8s ease forwards;
 }
 
-/* Add Food Section */
+/* Add Food  */
 .add-food-section {
   max-width: 700px;
   margin: 50px auto;
@@ -182,7 +182,7 @@ textarea { resize: none; min-height: 80px; }
 
 .btn-reset:hover { transform: scale(1.05); background-color: #37b3a7; }
 
-/* Image Preview Animation */
+/* Image Animation */
 .image-preview {
   display: flex;
   justify-content: center;
@@ -195,7 +195,7 @@ textarea { resize: none; min-height: 80px; }
 
 .image-preview.show { opacity: 1; }
 
-/* Fade + Slide Up Keyframes */
+/* Fade */
 @keyframes fadeSlideUp {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -214,4 +214,43 @@ textarea { resize: none; min-height: 80px; }
   padding: 15px;
   font-size: 0.9rem;
   margin-top: 60px;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown links hidden */
+.dropdown-content {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+/* Dropdown links style */
+.dropdown-content a {
+  padding: 12px 20px;
+  display: block;
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: flex; /* now visible */
 }

@@ -9,12 +9,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Prevent horizontal scroll */
+/* horizontal scroll */
 html, body {
   overflow-x: hidden;
 }
 
-/* Headings with Montserrat */
+/* Headings */
 h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
 }
@@ -94,7 +94,7 @@ body {
   color: var(--secondary);
 }
 
-/* Sign In button in nav */
+/* Sign In button */
 .sign-in-btn {
   background-color: var(--primary);
   color: var(--secondary);
@@ -129,7 +129,7 @@ body {
   animation: fadeSlideUp 2s ease;
 }
 
-/* Banner Explore Button - Smaller Version */
+/* Banner Explore Button */
 .banner-buttons .explore {
   display: inline-block;
   background-color: var(--primary);
@@ -147,7 +147,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Recently Added */
 .recent {
   padding: 80px 20px;
   text-align: center;
@@ -382,6 +381,153 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* Theme colors */
+:root {
+  --primary: #F7C137; /* Yellow */
+  --secondary: #231651; /* Dark Purple */
+  --turquoise: #4DCCBD;
+  --dark: #070410;
+  --white: #FFFFFF;
+}
+
+/* Chatbot Button */
+#chatbotBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--secondary);
+  color: var(--white);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+  z-index: 1000;
+}
+
+#chatbotBtn:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+/* Chatbot Modal */
+.chatbot-modal {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 25px;
+  width: 350px;
+  max-width: 90%;
+  height: 450px;
+  background-color: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.chatbot-header {
+  background-color: var(--primary);
+  color: var(--secondary);
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Body */
+.chatbot-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Message */
+.bot-msg, .user-msg {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.bot-msg {
+  background-color: var(--secondary);
+  color: var(--white);
+  align-self: flex-start;
+}
+
+.user-msg {
+  background-color: var(--primary);
+  color: var(--secondary);
+  align-self: flex-end;
+}
+
+/* Footer */
+.chatbot-footer {
+  display: flex;
+  padding: 10px 15px;
+  gap: 10px;
+  border-top: 1px solid #ddd;
+  background-color: var(--white);
+}
+
+.chatbot-footer input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Send Button */
+.send-btn {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+.send-btn:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* Scrollbar */
+.chatbot-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-body::-webkit-scrollbar-thumb {
+  background-color: rgba(35,22,81,0.5);
+  border-radius: 3px;
+}
+
 /* Footer */
 .footer {
   background-color: var(--dark);
@@ -471,4 +617,43 @@ body {
 
 .signin-container a:hover {
   text-decoration: underline;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown links hidden */
+.dropdown-content {
+  display: none; /* hidden initially */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+/* Dropdown links style */
+.dropdown-content a {
+  padding: 12px 20px;
+  display: block;
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+/* Dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: flex; 
 }

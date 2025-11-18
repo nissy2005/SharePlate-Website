@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* Reset & Base */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -375,6 +375,46 @@ body {
   font-weight: 600;
   margin-top: 10px;
 }
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown links hidden */
+.dropdown-content {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+/* Dropdown links style */
+.dropdown-content a {
+  padding: 12px 20px;
+  display: block;
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: flex; 
+}
+
 
 /* Footer */
 .footer {

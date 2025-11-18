@@ -18,7 +18,16 @@
       <a href="browse.html" class="nav-item">Browse</a>
       <a href="addfood.html" class="nav-item">Add Food</a>
       <a href="yourorders.html" class="nav-item">Your Orders</a>
-      <a href="#" class="nav-item">More</a>
+
+    <div class="nav-item dropdown">
+      <span>More &#9662;</span>
+      <div class="dropdown-content">
+        <a href="about.html">About Us</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="offers.html">Promotions</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </div>
       <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
     </div>
   </nav>
@@ -154,6 +163,30 @@
       </div>
     </div>
   </section>
+
+<!-- Chatbot Button -->
+<div id="chatbotBtn">💬</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="chatbot-modal">
+  <div class="chatbot-header">
+    <span>Chat with us!</span>
+    <span id="closeChat">&times;</span>
+  </div>
+
+  <!-- Chatbot messages go here -->
+  <div class="chatbot-body" id="chatbotBody"></div>
+
+  <!-- Footer -->
+  <div class="chatbot-footer">
+    <input type="text" id="chatInput" placeholder="Type your message..." />
+    <button id="sendChat" class="send-btn">➤</button>
+  </div>
+
+  <div id="quickReplies" class="quick-replies" style="display:flex; gap:10px; flex-wrap:wrap; padding:10px;"></div>
+</div>
+
+<script src="chatbot.js"></script>
 
   <!-- Footer -->
   <footer class="footer">

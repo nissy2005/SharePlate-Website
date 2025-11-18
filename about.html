@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | SharePlate</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="about.css" /> <!-- page-specific CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="logo">
+      <img src="images/logo.png" alt="SharePlate Logo">
+    </div>
+    <div class="menu">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="browse.html" class="nav-item">Browse</a>
+      <a href="addfood.html" class="nav-item">Add Food</a>
+      <a href="yourorders.html" class="nav-item">Your Orders</a>
+      <div class="nav-item dropdown">
+        <span>More &#9662;</span>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="offers.html">Promotions</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+      </div>
+      <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="hero-overlay">
+      <h1>Share Food. Spread Kindness. Reduce Waste.</h1>
+      <p>Building a community where every plate makes a difference. Join our mission to connect communities, reduce food waste, and make every meal count. Discover how small acts of sharing can create a big impact.</p>
+    </div>
+    <div class="hero-illustration">
+      <img src="images/illustration.jpg" alt="Sharing Food Illustration">
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="about-content">
+    <div class="about-container">
+      <div class="about-section">
+        <h3>Our Story</h3>
+        <p>SharePlate began with a simple dream — to build a community where no good food goes to waste. We realized how often food is thrown away while others go hungry, so we created a way for people to share what they have and make a difference together.</p>
+      </div>
+      <div class="about-section">
+        <h3>Our Mission</h3>
+        <p>To connect people through food — encouraging generosity, reducing waste, and creating a sustainable future one plate at a time.</p>
+      </div>
+      <div class="about-section">
+        <h3>Our Vision</h3>
+        <p>We envision a world where sharing food becomes second nature, and communities come together to support each other with love and care.</p>
+      </div>
+      <div class="about-section">
+        <h3>Our Values</h3>
+        <ul>
+          <li><strong>Compassion:</strong> Every plate shared spreads kindness.</li>
+          <li><strong>Community:</strong> Together we can make a difference.</li>
+          <li><strong>Sustainability:</strong> Reducing waste for a better tomorrow.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="about-team">
+    <h3>Meet Our Team</h3>
+    <div class="team-wrapper">
+      <!-- Info panel -->
+      <div class="team-info" id="team-info"></div>
+
+      <!-- Team Cards -->
+      <div class="team-cards">
+        <div class="team-card" data-name="Jane Doe" data-role="Co-Founder & CEO" data-bio="Passionate about reducing food waste.">
+          <img src="images/founder1.jpg" alt="Jane Doe">
+        </div>
+        <div class="team-card" data-name="John Smith" data-role="Co-Founder & CTO" data-bio="Tech innovator making sharing easy.">
+          <img src="images/founder2.jpeg" alt="John Smith">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 SharePlate. All rights reserved.
+  </footer>
+
+  <script>
+  const cards = document.querySelectorAll('.team-card');
+  const infoPanel = document.getElementById('team-info');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      const name = card.dataset.name;
+      const role = card.dataset.role;
+      const bio = card.dataset.bio;
+      
+      // Fill info content
+      infoPanel.innerHTML = `
+        <h4>${name}</h4>
+        <p>${role}</p>
+        <p>${bio}</p>
+      `;
+
+      // Make visible
+      infoPanel.style.display = 'block';
+      setTimeout(() => {
+        infoPanel.style.opacity = '1';
+      }, 50);
+
+      // Get positions
+      const rect = card.getBoundingClientRect();
+      const wrapperRect = card.parentElement.parentElement.getBoundingClientRect();
+
+      // Position depending on which card
+      if (card === cards[0]) {
+        infoPanel.style.left = rect.left - wrapperRect.left - infoPanel.offsetWidth - 20 + 'px';
+        infoPanel.style.top = rect.top - wrapperRect.top + 'px';
+        infoPanel.classList.add('left');
+        infoPanel.classList.remove('right');
+      } else {
+        infoPanel.style.left = rect.left - wrapperRect.left + rect.width + 20 + 'px';
+        infoPanel.style.top = rect.top - wrapperRect.top + 'px';
+        infoPanel.classList.add('right');
+        infoPanel.classList.remove('left');
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      infoPanel.style.opacity = '0';
+      setTimeout(() => {
+        infoPanel.style.display = 'none';
+      }, 400);
+    });
+  });
+</script>
+</body>
+</html>

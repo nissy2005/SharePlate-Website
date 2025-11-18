@@ -9,13 +9,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Prevent horizontal scroll */
+/* Cancel horizontal scroll */
 html, body {
   overflow-x: hidden;
   height: 100%;
 }
 
-/* Headings with Montserrat */
+/* Headings */
 h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
 }
@@ -29,7 +29,7 @@ h2, h3, h4 {
   --white: #FFFFFF;
 }
 
-/* Sign Up Page Layout */
+/* Sign Up Page */
 .signup-section {
   display: flex;
   justify-content: center;
@@ -55,7 +55,7 @@ h2, h3, h4 {
   color: var(--secondary);
 }
 
-/* Form Inputs */
+/* Form */
 .signup-container form {
   display: flex;
   flex-direction: column;
@@ -111,7 +111,7 @@ h2, h3, h4 {
   margin: 0 10px;
 }
 
-/* Social Buttons */
+/* Buttons */
 .social-signup {
   display: flex;
   flex-direction: column;

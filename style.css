@@ -538,6 +538,10 @@ body {
   margin-top: 60px;
 }
 
+.sign-in-btn::after {
+  display: none !important;
+}
+
 /* Banner Animation */
 @keyframes fadeSlideUp {
   0% {

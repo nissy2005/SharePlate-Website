@@ -1,0 +1,307 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* horizontal scroll */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Headings */
+h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Colors */
+:root {
+  --primary: #F7C137;    /* yellow */
+  --secondary: #231651;  /* deep purple */
+  --turquoise: #4DCCBD;
+  --dark: #070410;
+  --white: #FFFFFF;
+}
+
+/* Body */
+body {
+  background-color: var(--white);
+  color: var(--dark);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Navigation */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  height: 80px; 
+  padding: 0 30px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo img {
+  height: 80px;  
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 20px; 
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background-color: var(--primary);
+  transition: 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-item.active {
+  font-weight: 700;
+}
+
+.user-icon {
+  font-size: 22px;
+  color: var(--secondary);
+}
+
+/* Sign In button */
+.sign-in-btn {
+  background-color: var(--primary);
+  color: var(--secondary);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #ffe27a;
+  transform: scale(1.05);
+}
+
+/* Sign In Page */
+.signin-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--secondary), var(--turquoise));
+}
+
+.signin-container {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.signin-container h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--secondary);
+}
+
+.signin-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signin-container input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.signin-submit {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.signin-submit:hover {
+  background-color: #ffe27a;
+  transform: scale(1.05);
+}
+
+.signin-container p {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signin-container a {
+  color: var(--secondary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-container a:hover {
+  text-decoration: underline;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown links hidden */
+.dropdown-content {
+  display: none; /* hidden initially */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+/* Dropdown links style */
+.dropdown-content a {
+  padding: 12px 20px;
+  display: block;
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+/* Dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: flex; 
+}
+
+/* -----------------------
+   FAQ PAGE STYLES
+----------------------- */
+.faq-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.faq-container h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: var(--secondary);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* FAQ items */
+.faq-item {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Question */
+.faq-question {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.2rem;
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+/* Active question indicator */
+.faq-item.active .faq-question::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+/* Answer */
+.faq-answer {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--dark);
+  line-height: 1.6;
+  display: none;
+  padding-left: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+  max-height: 500px; /* enough for most answers */
+  opacity: 1;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark);
+  color: var(--white);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
+
+.sign-in-btn::after {
+  display: none !important;
+}

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SharePlate</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chatbot.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,15 +20,15 @@
       <a href="addfood.html" class="nav-item">Add Food</a>
       <a href="yourorders.html" class="nav-item">Your Orders</a>
 
-    <div class="nav-item dropdown">
-      <span>More &#9662;</span>
-      <div class="dropdown-content">
-        <a href="about.html">About Us</a>
-        <a href="faqs.html">FAQs</a>
-        <a href="offers.html">Promotions</a>
-        <a href="gallery.html">Gallery</a>
+      <div class="nav-item dropdown">
+        <span>More &#9662;</span>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="faq.html">FAQs</a>
+          <a href="offers.html">Promotions</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
       </div>
-    </div>
       <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
     </div>
   </nav>
@@ -138,55 +139,37 @@
           <p>"I check this app every day. It’s simple, fast, and effective."</p>
           <h4>- Daniel</h4>
         </div>
-
-        <!-- Duplicate cards for seamless loop -->
-        <div class="review-card">
-          <p>"This app is amazing! It has completely changed how I manage my tasks."</p>
-          <h4>- Alex</h4>
-        </div>
-        <div class="review-card">
-          <p>"Love the clean design and smooth functionality. Highly recommended!"</p>
-          <h4>- Sophia</h4>
-        </div>
-        <div class="review-card">
-          <p>"A must-have for anyone who wants to stay organized effortlessly."</p>
-          <h4>- Michael</h4>
-        </div>
-        <div class="review-card">
-          <p>"The support team is fantastic and the features are top-notch."</p>
-          <h4>- Emily</h4>
-        </div>
-        <div class="review-card">
-          <p>"I check this app every day. It’s simple, fast, and effective."</p>
-          <h4>- Daniel</h4>
-        </div>
       </div>
     </div>
   </section>
 
-<!-- Chatbot Button -->
-<div id="chatbotBtn">💬</div>
+  <!-- Chatbot Button -->
+  <div id="chatbotBtn">💬</div>
 
-<!-- Chatbot Modal -->
-<div id="chatbotModal" class="chatbot-modal">
-  <div class="chatbot-header">
-    <span>Chat with us!</span>
-    <span id="closeChat">&times;</span>
+  <!-- Chatbot Notification -->
+  <div id="chatNotification">
+    💬 Want any help?
+    <span id="closeNotification">×</span>
   </div>
 
-  <!-- Chatbot messages go here -->
-  <div class="chatbot-body" id="chatbotBody"></div>
+  <!-- Chatbot Modal -->
+  <div id="chatbotModal" class="chatbot-modal">
+    <div class="chatbot-header">
+      <span>Chat with us!</span>
+      <span id="closeChat">&times;</span>
+    </div>
 
-  <!-- Footer -->
-  <div class="chatbot-footer">
-    <input type="text" id="chatInput" placeholder="Type your message..." />
-    <button id="sendChat" class="send-btn">➤</button>
+    <div class="chatbot-body" id="chatbotBody"></div>
+
+    <div class="chatbot-footer">
+      <input type="text" id="chatInput" placeholder="Type your message..." />
+      <button id="sendChat" class="send-btn">➤</button>
+    </div>
+
+    <div id="quickReplies" class="quick-replies" style="display:flex; gap:10px; flex-wrap:wrap; padding:10px;"></div>
   </div>
 
-  <div id="quickReplies" class="quick-replies" style="display:flex; gap:10px; flex-wrap:wrap; padding:10px;"></div>
-</div>
-
-<script src="chatbot.js"></script>
+  <script src="chatbot.js"></script>
 
   <!-- Footer -->
   <footer class="footer">
@@ -202,7 +185,6 @@
     function revealOnScroll() {
       const triggerBottom = window.innerHeight * 0.85;
 
-      // Reveal Recently Added cards
       cards.forEach(card => {
         const cardTop = card.getBoundingClientRect().top;
         if(cardTop < triggerBottom) {
@@ -212,12 +194,10 @@
         }
       });
 
-      // Reveal How It Works title
       if(howTitle.getBoundingClientRect().top < triggerBottom) {
         howTitle.classList.add('show');
       }
 
-      // Reveal each How It Works step
       steps.forEach(step => {
         const stepTop = step.getBoundingClientRect().top;
         if(stepTop < triggerBottom) {

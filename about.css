@@ -1,34 +1,36 @@
-:root {
-  --primary: #4DCCBD;
-  --secondary: #231651;
-  --white: #ffffff;
-  --yellow: #EEF36A;
-  --yellow-theme: #F7C137;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {
+  --primary: #F7C137;
+  --secondary: #231651;
+  --turquoise: #4DCCBD;
+  --dark: #070410;
+  --white: #FFFFFF;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
 }
 
-/* Navigation Bar */
+/* Navigation */
 .top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--white);
-  height: 80px;
+  height: 80px; 
   padding: 0 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -74,7 +76,7 @@ body {
 
 .sign-in-btn {
   background-color: var(--primary);
-  color: var(--white);
+  color: var(--secondary);
   padding: 8px 18px;
   border-radius: 20px;
   font-weight: 600;
@@ -376,4 +378,8 @@ body {
   background-color: #070410;
   color: #fff;
   font-size: 14px;
+}
+
+.sign-in-btn::after {
+  display: none !important;
 }

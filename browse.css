@@ -424,3 +424,7 @@ body {
   padding: 15px;
   margin-top: 60px;
 }
+
+.sign-in-btn::after {
+  display: none !important;
+}

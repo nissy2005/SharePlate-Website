@@ -216,6 +216,10 @@ textarea { resize: none; min-height: 80px; }
   margin-top: 60px;
 }
 
+.sign-in-btn::after {
+  display: none !important;
+}
+
 /* Dropdown container */
 .dropdown {
   position: relative;

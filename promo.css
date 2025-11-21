@@ -1,0 +1,264 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Colors */
+:root {
+  --primary: #F7C137;
+  --secondary: #231651;
+  --turquoise: #4DCCBD;
+  --dark: #070410;
+  --white: #FFFFFF;
+  --highlight-bg: #f0f0f0;
+}
+
+/* Body */
+body {
+  background-color: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  height: 80px; 
+  padding: 0 30px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo img {
+  height: 80px;
+  object-fit: contain;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background-color: var(--primary);
+  transition: 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-item.active {
+  font-weight: 700;
+}
+
+.sign-in-btn {
+  background-color: var(--primary);
+  color: var(--secondary);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #ffe27a;
+  transform: scale(1.05);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+}
+
+.dropdown-content a {
+  padding: 12px 20px;
+  display: block;
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* -----------------------
+   HERO SECTION
+----------------------- */
+.promo-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 15px;
+  background-color: var(--highlight-bg);
+  gap: 40px;
+  flex-wrap: nowrap; /* prevent wrapping */
+}
+
+.promo-text {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.promo-text h1 {
+  font-size: 2.5rem;
+  color: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.promo-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.promo-image {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.promo-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  object-fit: contain;
+}
+
+/* GIFT SECTION */
+.promo-gift {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.promo-gift h2 {
+  font-size: 2.2rem;
+  color: var(--secondary);
+  margin-bottom: 25px;
+}
+
+.promo-gift p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.gift-images {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.gift-images img {
+  width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gift-images img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+.footer {
+  background-color: var(--dark);
+  color: var(--white);
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+.sign-in-btn::after {
+  display: none !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .promo-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .promo-text, .promo-image {
+    min-width: 100%;
+  }
+
+  .gift-images {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .promo-text h1 {
+    font-size: 2rem;
+  }
+  .promo-text p {
+    font-size: 1rem;
+  }
+}
+
+.dropdown-content .nav-item::after {
+  display: none;
+}

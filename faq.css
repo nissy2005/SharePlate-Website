@@ -77,16 +77,17 @@ body {
   height: 3px;
   left: 0;
   bottom: -5px;
-  background-color: var(--primary);
+  background-color: var(--primary); /* yellow underline */
   transition: 0.3s ease;
 }
 
+/* THIS WAS MISSING */
 .nav-item:hover::after {
-  width: 100%;
+  width: 100%; /* underline grows on hover */
 }
 
 .nav-item.active {
-  font-weight: 700;
+  font-weight: 700; /* active page slightly bold */
 }
 
 .user-icon {
@@ -304,4 +305,12 @@ body {
 
 .sign-in-btn::after {
   display: none !important;
+}
+
+.nav-item.active::after {
+  width: 0 !important;
+}
+
+.nav-item.active:hover::after {
+  width: 0 !important;
 }

@@ -45,6 +45,23 @@ body {
   text-decoration: none;
   color: var(--secondary);
   font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background-color: var(--primary); /* yellow underline */
+  transition: 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%; /* underline grows on hover */
 }
 
 .nav-item.active {

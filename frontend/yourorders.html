@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Orders - SharePlate</title>
+  <link rel="stylesheet" href="yourorders.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="logo">
+      <img src="images/logo.png" alt="SharePlate Logo">
+    </div>
+    <div class="menu">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="browse.html" class="nav-item">Browse</a>
+      <a href="addfood.html" class="nav-item">Add Food</a>
+      <a href="yourorders.html" class="nav-item active">Your Orders</a>
+
+      <div class="nav-item dropdown">
+        <span>More &#9662;</span>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="faq.html">FAQs</a>
+          <a href="promo.html">Promotions</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+      </div>
+      <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Orders Section -->
+  <section class="orders-section">
+    <h2>Your Order Details</h2>
+    <div class="selected-items"></div>
+
+    <!-- Customer Details -->
+    <div class="customer-details" style="margin-top:20px;">
+      <input type="text" id="customerName" placeholder="Your Name" style="padding:10px; border-radius:5px; margin-bottom:10px; width:100%;">
+      <input type="text" id="customerPhone" placeholder="Phone Number" style="padding:10px; border-radius:5px; margin-bottom:10px; width:100%;">
+      <button class="confirm-order-btn" style="background:#4DCCBD; color:#fff; padding:10px 20px; border:none; border-radius:8px; cursor:pointer;">Confirm Order</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 SharePlate. All rights reserved.
+  </footer>
+
+  <!-- Custom JS -->
+  <script>
+    // Navbar Active 
+    const navItems = document.querySelectorAll('.menu .nav-item');
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+
+    // Orders Storage 
+    function getOrders() {
+      return JSON.parse(localStorage.getItem('orders') || '[]');
+    }
+
+    function saveOrders(orders) {
+      localStorage.setItem('orders', JSON.stringify(orders));
+    }
+
+    // Render Orders
+    const selectedItemsContainer = document.querySelector('.selected-items');
+
+    function renderOrders() {
+      selectedItemsContainer.innerHTML = ''; 
+
+      const orders = getOrders();
+      if (!orders.length) {
+        selectedItemsContainer.innerHTML = `<p style="color:#555; text-align:center;">No orders yet</p>`;
+        return;
+      }
+
+      orders.forEach(order => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('selected-item');
+
+        itemDiv.innerHTML = `
+          <img src="images/${order.itemImage || 'placeholder.png'}" alt="${order.item}">
+          <div class="item-info">
+            <p>${order.item}</p>
+            <span class="quantity">x${order.quantity}</span>
+            <span class="status" style="display:block; margin:5px 0; font-weight:600;">Status: ${order.status}</span>
+            <button class="update-status" style="margin-right:5px; background:#4DCCBD; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Next Status</button>
+            <button class="cancel-item" style="background:#e53935; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Cancel</button>
+          </div>
+        `;
+        selectedItemsContainer.appendChild(itemDiv);
+
+        // Cancel function
+        itemDiv.querySelector('.cancel-item').addEventListener('click', () => {
+          cancelOrder(order.id);
+        });
+
+        // Update Status function
+        itemDiv.querySelector('.update-status').addEventListener('click', () => {
+          updateOrderStatus(order.id);
+        });
+      });
+    }
+
+
+    // Cancel or Update Status 
+    function cancelOrder(id) {
+      let orders = getOrders();
+      orders = orders.filter(o => o.id !== id);
+      saveOrders(orders);
+      renderOrders();
+    }
+
+    function updateOrderStatus(id) {
+      let orders = getOrders();
+      orders = orders.map(o => {
+        if (o.id === id) {
+          if (o.status === "Pending") o.status = "Preparing";
+          else if (o.status === "Preparing") o.status = "Delivered";
+        }
+        return o;
+      });
+      saveOrders(orders);
+      renderOrders();
+    }
+
+    // Add Order 
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      const item = params.get('item');
+      const qty = parseInt(params.get('qty'));
+      return { item, qty };
+    }
+
+    function addOrderFromURL() {
+      const { item, qty } = getQueryParams();
+      if (!item || !qty) return;
+
+      let orders = getOrders();
+
+      // Image mapping
+      const imageMap = {
+        'Apple': 'apple.jpeg',
+        'Banana': 'banana.webp',
+        'Oranges': 'orange.jpg',
+        'Carrot': 'carrot.webp',
+        'Broccoli': 'broccoli.jpeg',
+        'Chocolate Cake': 'cake.jpg',
+        'Ice Cream': 'icecream.jpg',
+        'Coffee': 'coffee.jpeg',
+        'Juice': 'juice.avif',
+        'Chips': 'chips.jpg',
+        'Nuts': 'nuts.jpeg'
+      };
+      const img = imageMap[item] || 'placeholder.png';
+
+      orders.push({
+        id: Date.now(),
+        item,
+        quantity: qty,
+        status: "Pending",
+        itemImage: img
+      });
+
+      saveOrders(orders);
+    }
+
+    // Confirm Order 
+    document.querySelector('.confirm-order-btn').addEventListener('click', () => {
+      const orders = getOrders();
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+
+      if (!orders.length) {
+        alert("No items to confirm!");
+        return;
+      }
+      if (!name || !phone) {
+        alert("Please enter your name and phone number!");
+        return;
+      }
+
+      // Attach customer info to prev orders
+      const confirmedOrders = orders.map(o => ({
+        ...o,
+        customerName: name,
+        customerPhone: phone
+      }));
+
+      // Save confirmed orders to localStorage 
+      localStorage.setItem('confirmedOrders', JSON.stringify(confirmedOrders));
+
+      alert("Order confirmed!");
+
+      // Clear cart after confirmation
+      saveOrders([]);
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerPhone').value = '';
+      renderOrders();
+    });
+
+    // Initialize on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      addOrderFromURL();
+      renderOrders();
+    });
+  </script>
+</body>
+</html>

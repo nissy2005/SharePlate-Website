@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotions</title>
+  <link rel="stylesheet" href="promo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+  <div class="logo">
+    <img src="images/logo.png" alt="SharePlate Logo">
+  </div>
+  <div class="menu">
+    <a href="index.html" class="nav-item">Home</a>
+    <a href="browse.html" class="nav-item">Browse</a>
+    <a href="addfood.html" class="nav-item">Add Food</a>
+    <a href="yourorders.html" class="nav-item">Your Orders</a>
+
+    <div class="nav-item dropdown">
+      <span>More &#9662;</span>
+      <div class="dropdown-content">
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="faq.html" class="nav-item">FAQs</a>
+        <a href="promo.html" class="nav-item active">Promotions</a> 
+        <a href="gallery.html" class="nav-item">Gallery</a>
+      </div>
+    </div>
+
+    <a href="signin.html" class="nav-item sign-in-btn">Sign In</a>
+  </div>
+</nav>
+
+  <!-- Promotion Hero -->
+  <section class="promo-hero">
+    <div class="promo-text">
+      <h1>Share More, Get More!</h1>
+      <p>Upload 10 or more leftover food items and receive a <span>custom hoodie or cap</span> featuring our logo.</p>
+      <button class="promo-btn">Check Your Eligibility</button>
+    </div>
+    <div class="promo-image">
+      <img src="images/hoodie.png" alt="Hoodie Gift">
+    </div>
+  </section>
+
+  <!-- Model Section -->
+<section class="models-section">
+  <h2>Our Happy Winners Wearing Their Gifts</h2>
+  <p class="models-info">Here’s a look at our amazing participants proudly showing off the custom hoodies and caps they received for sharing their leftover food. Be inspired and join the fun!</p>
+  
+  <div class="model-grid">
+    <div class="model-card">
+      <img src="images/model1.png" alt="Model 1 Hoodie">
+    </div>
+    <div class="model-card">
+      <img src="images/model2.png" alt="Model 2 Cap">
+    </div>
+    <div class="model-card">
+      <img src="images/gallery10.png" alt="Model 3 Hoodie">
+    </div>
+    <div class="model-card">
+      <img src="images/model4.png" alt="Model 4 Cap">
+    </div>
+  </div>
+</section>
+
+<div id="eligibility-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Check Your Eligibility</h2>
+    <p>Upload at least 10 leftover food items!!</p>
+    <button class="modal-action-btn">Got it!</button>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 SharePlate. All Rights Reserved.
+  </footer>
+
+<script>
+  // Select all images
+  const modelCards = document.querySelectorAll('.model-card img');
+
+  modelCards.forEach(img => {
+    img.addEventListener('click', () => {
+      // Create overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'fullscreen-overlay';
+
+      // Create enlarged image
+      const fullImg = document.createElement('img');
+      fullImg.src = img.src;
+      fullImg.className = 'fullscreen-img';
+
+      // Add image to overlay
+      overlay.appendChild(fullImg);
+
+      // Add overlay to body
+      document.body.appendChild(overlay);
+
+      // Close overlay when clicking anyside of the page
+      overlay.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+      });
+
+      // Close overlay with Esc key
+      function escListener(e) {
+        if (e.key === "Escape") {
+          if (document.body.contains(overlay)) {
+            document.body.removeChild(overlay);
+          }
+          document.removeEventListener('keydown', escListener);
+        }
+      }
+      document.addEventListener('keydown', escListener);
+    });
+  });
+
+// Eligibility modal
+const eligibilityBtn = document.querySelector('.promo-btn');
+const eligibilityModal = document.getElementById('eligibility-modal');
+const closeBtn = document.querySelector('.close-btn');
+const modalActionBtn = document.querySelector('.modal-action-btn');
+
+// Show modal when button is clicked
+eligibilityBtn.addEventListener('click', () => {
+  eligibilityModal.style.display = 'flex';
+});
+
+// Close modal when clicking "x" 
+closeBtn.addEventListener('click', () => {
+  eligibilityModal.style.display = 'none';
+});
+modalActionBtn.addEventListener('click', () => {
+  eligibilityModal.style.display = 'none';
+});
+
+// Close modal when clicking outside the content
+window.addEventListener('click', (e) => {
+  if (e.target === eligibilityModal) {
+    eligibilityModal.style.display = 'none';
+  }
+
+  // Navbar Slide Down on Scroll
+  const navbar = document.querySelector('.top-nav');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      // Slide down and keep it visible
+      navbar.style.transform = 'translateY(0)';
+    } else {
+      navbar.style.transform = 'translateY(0)'; 
+    }
+  });
+});
+</script>
+
+</body>
+</html>

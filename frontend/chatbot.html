@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharePlate Chatbot</title>
+  <link rel="stylesheet" href="chatbot.css">
+  <script src="chatbot.js"></script>
+</head>
+<body>
+
+<!-- Chat Notification -->
+<div id="chatNotification" style="display:none;">
+  Want any help?
+  <span id="closeNotification">&times;</span>
+</div>
+
+<!-- Chatbot Button -->
+<div id="chatbotBtn">💬</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="chatbot-modal">
+  <div class="chatbot-header">
+    <span>Chat with us!</span>
+    <span id="closeChat">&times;</span>
+  </div>
+  <div class="chatbot-body" id="chatbotBody"></div>
+  <div class="chatbot-footer">
+    <input type="text" id="chatInput" placeholder="Type your message..." />
+    <button id="sendChat" class="send-btn">➤</button>
+  </div>
+  <div id="quickReplies" class="quick-replies" style="display:flex; gap:10px; flex-wrap:wrap; padding:10px;"></div>
+</div>
+</body>
+</html>

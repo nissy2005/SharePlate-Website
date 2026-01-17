@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - SharePlate</title>
+  <link rel="stylesheet" href="signup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <section class="signup-section">
+    <div class="signup-container">
+      
+      <!-- Close Button -->
+      <button class="close-btn" onclick="window.history.back()">✕</button>
+
+      <h2>Create Account</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit" class="signup-submit">Sign Up</button>
+      </form>
+
+      <!-- OR separator -->
+      <div class="or-separator"><span>OR</span></div>
+
+      <!-- Sign Up Buttons -->
+      <button id="googleBtn" class="social-btn google" type="button">
+        <img src="images/google.png" alt="Google Logo">
+        <span>Sign up with Google</span>
+      </button>
+      
+    </div>
+  </section>
+
+  <script>
+    // Signup
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          window.location.href = "index.html";
+        } else {
+          alert(data.message || "Signup failed");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Something went wrong. Please try again.");
+      }
+    });
+
+    // Google Sign-In 
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "42598684790-91b97p0g31jebhd9cbqreuinvu29goe4.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("googleBtn"),
+        { theme: "outline", size: "large", width: "250" }
+      );
+    };
+
+    async function handleCredentialResponse(response) {
+      try {
+        const res = await fetch('http://localhost:5000/google-signin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: response.credential })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          window.location.href = "index.html";
+        } else {
+          alert("Google sign-in failed!");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Something went wrong with Google sign-in.");
+      }
+    }
+  </script>
+</body>
+</html>

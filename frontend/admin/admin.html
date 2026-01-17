@@ -14,106 +14,22 @@
   <nav>
     <button id="viewPendingFoods">Pending Foods</button>
     <button id="viewOrders">Orders</button>
+    <button id="showAddProductForm">Add Product</button>
   </nav>
 
-  <script>
-  const API = 'http://localhost:5000/api/admin';
-  const contentDiv = document.getElementById('content');
+  <!-- Dynamic content will be rendered here -->
+  <div id="content">
+    <p>Click a button above to manage foods or orders.</p>
+  </div>
 
-  // Buttons
-  const viewPendingBtn = document.getElementById('viewPendingFoods');
-  const viewOrdersBtn = document.getElementById('viewOrders');
-
-  viewPendingBtn.addEventListener('click', fetchPendingFoods);
-  viewOrdersBtn.addEventListener('click', fetchOrders);
-
-  // Fetch and Render Pending Foods
-  async function fetchPendingFoods() {
-    try {
-      const res = await fetch(`${API}/foods?status=pending`);
-      const foods = await res.json();
-      renderPendingFoods(foods);
-    } catch (err) {
-      console.error('Error fetching pending foods:', err);
-      contentDiv.innerHTML = '<p>Error loading pending foods</p>';
-    }
-  }
-
-  function renderPendingFoods(foods) {
-    contentDiv.innerHTML = '<h2>Pending Food Items</h2>';
-
-    if (!foods.length) {
-      contentDiv.innerHTML += '<p>No pending food items</p>';
-      return;
-    }
-
-    foods.forEach(food => {
-      const div = document.createElement('div');
-      div.classList.add('food-item');
-      div.innerHTML = `
-        <h4>${food.name}</h4>
-        <p>${food.category} - ${food.description}</p>
-        <button class="approve-btn">Approve</button>
-        <button class="reject-btn">Reject</button>
-      `;
-      contentDiv.appendChild(div);
-
-      div.querySelector('.approve-btn').onclick = () => updateFoodStatus(food._id, 'approved');
-      div.querySelector('.reject-btn').onclick = () => updateFoodStatus(food._id, 'rejected');
-    });
-  }
-
-  async function updateFoodStatus(id, status) {
-    try {
-      const res = await fetch(`${API}/foods/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status })
-      });
-      const data = await res.json();
-      console.log(data.message);
-      fetchPendingFoods(); 
-    } catch (err) {
-      console.error('Error updating food status:', err);
-    }
-  }
-
-  // Fetch and Render Orders
-  async function fetchOrders() {
-    try {
-      const res = await fetch(`${API}/orders`);
-      const orders = await res.json();
-      renderOrders(orders);
-    } catch (err) {
-      console.error('Error fetching orders:', err);
-      contentDiv.innerHTML = '<p>Error loading orders</p>';
-    }
-  }
-
-  function renderOrders(orders) {
-    contentDiv.innerHTML = '<h2>Customer Orders</h2>';
-
-    if (!orders.length) {
-      contentDiv.innerHTML += '<p>No orders yet</p>';
-      return;
-    }
-
-    orders.forEach(order => {
-      const div = document.createElement('div');
-      div.classList.add('order-item');
-      div.innerHTML = `
-        <h4>Order #${order._id}</h4>
-        <p>Customer: ${order.customerName}</p>
-        <p>Items: ${order.items.map(i => i.name + ' x' + i.qty).join(', ')}</p>
-        <p>Status: ${order.status}</p>
-      `;
-      contentDiv.appendChild(div);
-    });
-  }
-
-  // Load Pending Foods
-  window.addEventListener('DOMContentLoaded', fetchPendingFoods);
-  </script>
+  <!-- Hidden form for adding products -->
+  <form id="addProductForm" style="display:none;">
+    <h2>Add New Product</h2>
+    <input type="text" id="productName" placeholder="Name" required>
+    <input type="text" id="productCategory" placeholder="Category" required>
+    <input type="text" id="productDescription" placeholder="Description" required>
+    <button type="submit">Add Product</button>
+  </form>
 
 </body>
 </html>

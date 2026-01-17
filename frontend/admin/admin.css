@@ -16,6 +16,8 @@
   --turquoise: #4DCCBD;
   --dark: #070410;
   --white: #FFFFFF;
+  --error: #e53935;
+  --success: #4caf50;
 }
 
 /* Body */
@@ -91,8 +93,9 @@ tbody tr:hover {
   background-color: #f7f0ff; 
 }
 
-/* Table action buttons */
-.edit-btn, .delete-btn {
+/* Action buttons */
+button.approve-btn,
+button.update-status-btn {
   padding: 6px 12px;
   border: none;
   border-radius: 8px;
@@ -102,26 +105,35 @@ tbody tr:hover {
   transition: all 0.3s ease;
 }
 
-.edit-btn {
-  background-color: var(--primary);
-  color: var(--secondary);
+button.approve-btn {
+  background-color: var(--success);
+  color: var(--white);
 }
 
-.edit-btn:hover {
-  background-color: #ffe27a;
+button.approve-btn:hover {
+  background-color: #66bb6a;
 }
 
-.delete-btn {
-  background-color: #e53935;
-  color: #fff;
+button.reject-btn {
+  background-color: var(--error);
+  color: var(--white);
 }
 
-.delete-btn:hover {
+button.reject-btn:hover {
   background-color: #ff6b6b;
 }
 
+button.update-status-btn {
+  background-color: var(--turquoise);
+  color: var(--white);
+}
+
+button.update-status-btn:hover {
+  background-color: #3db2a1;
+}
+
 /* Forms */
-form {
+form#addProductForm {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -130,9 +142,17 @@ form {
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.08);
   margin-top: 15px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-form input {
+form#addProductForm h2 {
+  text-align: center;
+  color: var(--secondary);
+}
+
+form#addProductForm input {
   padding: 12px 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -140,7 +160,7 @@ form input {
   outline: none;
 }
 
-form button {
+form#addProductForm button {
   padding: 12px 20px;
   border: none;
   border-radius: 25px;
@@ -151,34 +171,9 @@ form button {
   transition: all 0.3s ease;
 }
 
-form button:hover {
+form#addProductForm button:hover {
   background-color: #ffe27a;
   transform: scale(1.05);
-}
-
-.stat-card {
-  background-color: var(--white);
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-}
-
-.stat-card h3 {
-  color: var(--secondary);
-  margin-bottom: 10px;
-}
-
-.stat-card p {
-  color: var(--dark);
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 /* Responsive */

@@ -14,9 +14,7 @@ showAddProductFormBtn.onclick = () => {
   contentDiv.innerHTML = '';
 };
 
-// ----------------------
-// FETCH & RENDER FOODS
-// ----------------------
+// Fetch and Render Foods
 async function fetchPendingFoods() {
   addProductForm.style.display = 'none';
   try {
@@ -87,9 +85,7 @@ async function updateFoodStatus(id, status) {
   }
 }
 
-// ----------------------
-// FETCH & RENDER ORDERS
-// ----------------------
+// Fetch and Render Orders
 async function fetchOrders() {
   addProductForm.style.display = 'none';
   try {
@@ -161,9 +157,7 @@ async function updateOrderStatus(id) {
   }
 }
 
-// ----------------------
-// ADD NEW PRODUCT
-// ----------------------
+// Add New Product
 addProductForm.onsubmit = async (e) => {
   e.preventDefault();
   const name = document.getElementById('productName').value;
@@ -186,9 +180,7 @@ addProductForm.onsubmit = async (e) => {
   }
 };
 
-// ----------------------
 // Initial load
-// ----------------------
 window.addEventListener('DOMContentLoaded', () => {
   contentDiv.innerHTML = '<p>Click a button above to manage foods or orders.</p>';
 });

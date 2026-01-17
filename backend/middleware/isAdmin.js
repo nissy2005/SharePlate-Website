@@ -1,9 +1,6 @@
-// routes/admin.js
 const express = require('express');
 const router = express.Router();
 const isAdmin = require('../middleware/isAdmin');
-
-// Import your MongoDB models
 const User = require('../models/User');
 const Product = require('../models/Product');
 const Order = require('../models/order');
@@ -11,9 +8,7 @@ const Order = require('../models/order');
 // Apply middleware to all admin routes
 router.use(isAdmin);
 
-/* -----------------------
-      USER ROUTES
------------------------ */
+/* User Routes */
 
 // Get all users
 router.get('/users', async (req, res) => {
@@ -50,10 +45,7 @@ router.delete('/users/:id', async (req, res) => {
   }
 });
 
-
-/* -----------------------
-     PRODUCT ROUTES
------------------------ */
+/* Product Routes */
 
 // Get all products
 router.get('/products', async (req, res) => {
@@ -107,9 +99,7 @@ router.delete('/products/:id', async (req, res) => {
 });
 
 
-/* -----------------------
-       ORDER ROUTES
------------------------ */
+/* Order Routes */
 
 // Get all orders
 router.get('/orders', async (req, res) => {
